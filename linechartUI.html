@@ -1,0 +1,121 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>JS Bin</title>
+    <style>
+        body {
+            padding-top: 50px;
+            font: 10px sans-serif;
+        }
+
+        #myButton {
+            -moz-box-shadow: 0px 0px 0px 2px #9fb4f2;
+            -webkit-box-shadow: 0px 0px 0px 2px #9fb4f2;
+            box-shadow: 0px 0px 0px 2px #9fb4f2;
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7892c2), color-stop(1, #476e9e));
+            background: -moz-linear-gradient(top, #7892c2 5%, #476e9e 100%);
+            background: -webkit-linear-gradient(top, #7892c2 5%, #476e9e 100%);
+            background: -o-linear-gradient(top, #7892c2 5%, #476e9e 100%);
+            background: -ms-linear-gradient(top, #7892c2 5%, #476e9e 100%);
+            background: linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7892c2', endColorstr='#476e9e', GradientType=0);
+            background-color: #7892c2;
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            border: 1px solid #4e6096;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 19px;
+            padding: 12px 37px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #283966;
+        }
+
+        .myButton:hover {
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #476e9e), color-stop(1, #7892c2));
+            background: -moz-linear-gradient(top, #476e9e 5%, #7892c2 100%);
+            background: -webkit-linear-gradient(top, #476e9e 5%, #7892c2 100%);
+            background: -o-linear-gradient(top, #476e9e 5%, #7892c2 100%);
+            background: -ms-linear-gradient(top, #476e9e 5%, #7892c2 100%);
+            background: linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#476e9e', endColorstr='#7892c2', GradientType=0);
+            background-color: #476e9e;
+        }
+
+        .myButton:active {
+            position: relative;
+            top: 1px;
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
+
+        .grid path,
+        .grid line {
+            fill: none;
+            stroke: rgba(0, 0, 0, 0.25);
+            shape-rendering: crispEdges;
+        }
+
+        .x.axis path {
+            display: none;
+        }
+
+        .line {
+            fill: none;
+            stroke-width: 2.5px;
+        }
+
+    </style>
+
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <script type="text/javascript" src="finnascript.js"></script>
+    <script type="text/javascript" src="plotting.js"></script>
+    <script type="text/javascript" src="correlationMetric.js"></script>
+    <script type="text/javascript" src="buttonCallbacks.js"></script>
+
+    <script src="wide.js"></script>
+    <script src="date.js"></script>
+
+</head>
+
+
+<body>
+
+<p>start date:</p>
+<input type="number" id="start_date" min="1900" max="2030" step="1" value="1990">
+
+<p>end date:</p>
+<input type="number" id="end_date" min="1900" max="2030" step="1" value="2000">
+
+<button onclick="dateFunction()">Confrm year duration</button>
+<div id="dateResult"></div>
+
+
+<br>
+<br>
+<br>
+<br>
+
+<input type="text" id="text1"></input>
+<input type="button" id="button1" value="Add" onclick="add_element_to_array();"></input>
+<input type="button" id="button2" value="Display the search words" onclick="display_array();"></input>
+<div id="Result"></div>
+
+<br>
+<br>
+<br>
+<button onclick="drawLineChart()" id="myButton">Show the diagram</button>
+
+<svg id="line_chart"></svg>
+
+
+</body>
+</html>

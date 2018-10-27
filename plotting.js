@@ -29,24 +29,6 @@ function makeLineChart(elemId, data) {
         .call(xy_chart) ;
 }
 
-var data = function () {
-    var dataX = mockData.points.map(p => p.year);
-    var dataY = mockData.points.map(p => p.count);
-    var data1 = {
-        "label": "punk",
-        "x": dataX,
-        "y": dataY
-    };
-    var dataX = mock1.points.map(p => p.year);
-    var dataY = mock1.points.map(p => p.count);
-    var data2 = {
-        "label": "punk2",
-        "x": dataX,
-        "y": dataY
-    };
-    return [data1, data2];
-}()
-
 function d3_xy_chart() {
     var width = 640,
         height = 480,
