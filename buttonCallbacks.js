@@ -29,6 +29,8 @@ function reformatDataForLineChart(datasSets) {
 }
 
 function drawLineChart() {
+    var button = document.getElementById("myButton").setAttribute("style", "display:none")
+
     var svgId = "line_chart";
     var startYearId = "start_date";
     var endYearId = "end_date";
@@ -61,4 +63,16 @@ function drawLineChart() {
 
 
     makeLineChart("line_chart2", normalized)
+}
+
+//-----------------------------------------------------
+
+// function to create force-directed graph
+function drawGraph() {
+    var keyword = document.getElementById("keyword_input").value;
+
+    var data = getItDone(keyword);
+    var svg = d3.select('#graph_elem');
+
+    createV4SelectableForceDirectedGraph(svg, data);
 }
