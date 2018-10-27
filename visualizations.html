@@ -32,6 +32,7 @@
     var field = document.getElementById("search");
     var list = document.getElementById("list")
     button.addEventListener("click", function(evt) {
+        var date = new Date();
         button.style = "display: none;";
         var data = getItDone(field.value);
         data.nodes.map(function(a) {
@@ -50,6 +51,10 @@
                 console.error(error);
             }
         });
+        var date2 = new Date();
+
+        var diff = date2.getTime() - date.getTime();
+        console.log(diff / 1000);
     })
 
 </script>
