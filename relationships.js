@@ -167,6 +167,9 @@ function dataPooper(word) {
     let siblingWords = getSiblingWords(word);
     let subjectToSiblings = relationToMain(siblingWords);
     subjectToSiblings = subjectToSiblings.slice(subjectToSiblings.length - 5);
+    
+    let biggestValue = subjectToSiblings[subjectToSiblings.length - 1];
+
     let newSiblings = newSiblingWords(subjectToSiblings, siblingWords.subject);
     let siblingsToEachOther = pairs(newSiblings);
     let data = graphData(subjectToSiblings, siblingsToEachOther);
