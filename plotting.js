@@ -41,7 +41,7 @@ function d3_xy_chart() {
             //
             // Create the plot. 
             //
-            var margin = {top: 20, right: 80, bottom: 30, left: 50},
+            var margin = {top: 20, right: 80, bottom: 30, left: 100},
                 innerwidth = width - margin.left - margin.right,
                 innerheight = height - margin.top - margin.bottom ;
 

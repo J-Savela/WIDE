@@ -11,11 +11,11 @@ function add_element_to_array()
 
 function display_array()
 {
-   var e = "<hr/>";   
+   var e = "<br/>";
     
    for (var y=0; y<keywordArray.length; y++)
    {
-     e += "Search" + y + " = " + keywordArray[y] + "<br/>";
+     e += y + ": " + keywordArray[y] + "<br/>";
    }
    document.getElementById("Result").innerHTML = e;
 }

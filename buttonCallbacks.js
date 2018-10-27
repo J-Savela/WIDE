@@ -14,7 +14,7 @@ function getData(keywords, from, to) {
 }
 
 function reformatDataForLineChart(datasSets) {
-    var reformatted = datasSets.map(function(dataSet) {
+    var reformatted = datasSets.map(function (dataSet) {
         var dataX = dataSet.points.map(p => p.year);
         var dataY = dataSet.points.map(p => p.count);
         var data1 = {
@@ -25,7 +25,7 @@ function reformatDataForLineChart(datasSets) {
         return data1;
     })
 
-        return reformatted
+    return reformatted
 }
 
 function drawLineChart() {
@@ -46,4 +46,19 @@ function drawLineChart() {
 
     // Populate SVG element
     makeLineChart(svgId, reformatted)
+
+    // Normalized data
+    var normalized = reformatted.map(function (dataSet) {
+        var maxY = Math.max.apply(null, dataSet.y)
+        var dataY = dataSet.y.map(val => val / maxY);
+        var data1 = {
+            "label": dataSet.label,
+            "x": dataSet.x,
+            "y": dataY
+        };
+        return data1;
+    })
+
+
+    makeLineChart("line_chart2", normalized)
 }
