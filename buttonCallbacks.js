@@ -30,13 +30,13 @@ function reformatDataForLineChart(datasSets) {
 
 function drawLineChart() {
     var svgId = "line_chart";
-    var startYearId = "startYearBox";
-    var endYearId = "endYearBox";
+    var startYearId = "start_date";
+    var endYearId = "end_date";
 
     // fetch data from text fields
     var startYear = document.getElementById(startYearId).value;
     var endYear = document.getElementById(endYearId).value;
-    var keywords = []; // TODO!!!!!!!!!!!!!!!!!!!!!!!!!
+    var keywords = keywordArray;
 
     // Query data from Finna
     var dataDets = getData(keywords, from, to);
