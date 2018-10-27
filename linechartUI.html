@@ -8,6 +8,11 @@
             font: 14px sans-serif;
         }
 
+        iframe {
+            width:1000px;
+            height: 800px;
+        }
+
         #myButton {
             -moz-box-shadow: 0px 0px 0px 2px #9fb4f2;
             -webkit-box-shadow: 0px 0px 0px 2px #9fb4f2;
@@ -88,6 +93,7 @@
 
 
 <body>
+        <iframe src="visualizations.html"></iframe>
 
 <p>start date:</p>
 <input type="number" id="start_date" min="1900" max="2030" step="1" value="1990">
@@ -98,7 +104,6 @@
 <button onclick="dateFunction()">Confrm year duration</button>
 <div id="dateResult"></div>
 
-
 <br>
 <br>
 <br>
@@ -106,7 +111,6 @@
 
 <input type="text" id="text1"></input>
 <input type="button" id="button1" value="Add" onclick="add_element_to_array();"></input>
-<input type="button" id="button2" value="Display the search words" onclick="display_array();"></input>
 <div id="Result"></div>
 
 <br>

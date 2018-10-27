@@ -1,9 +1,20 @@
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8"/>
+    <style>
+        body {
+            width: 500px;
+            height: 500px;
+        }
+    </style>
 </head>
+<body>
 <input id="search">
 <button id="searchButton">Search</button>
+<br>
+<ul id="list">
+
+</ul>
 
 <div align='center' id="d3_selectable_force_directed_graph"
      style="width: 960px; height: 500px; margin: auto; margin-bottom: 12px">
@@ -19,9 +30,16 @@
 <script>
     var button = document.getElementById("searchButton");
     var field = document.getElementById("search");
+    var list = document.getElementById("list")
     button.addEventListener("click", function(evt) {
         button.style = "display: none;";
         var data = getItDone(field.value);
+        data.nodes.map(function(a) {
+            let li = document.createElement("li");
+            li.innerText = a.id;
+            list.appendChild(li);
+        });
+        
         var svg = d3.select('#d3_selectable_force_directed_graph');
     
         d3.json('miserables.with-ids.json', function (error, graph) {
@@ -35,3 +53,4 @@
     })
 
 </script>
+</body>
