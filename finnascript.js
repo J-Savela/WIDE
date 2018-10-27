@@ -20,7 +20,7 @@ function searchFromFinna(searchTerm, year) {
     return response;
 }
 
-export function dataPointsForSubject(searchTerm, from, to) {
+function dataPointsForSubject(searchTerm, from, to) {
     let array = [];
     for (let i = from; i <= to; i++) {
         let response = searchFromFinna(searchTerm, i);
