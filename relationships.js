@@ -139,14 +139,14 @@ function graphData(subjectToSiblings, siblingsToEachOther) {
     nodes = [...nodes, ...siblingNodes];
 
     let links;
-    let first = subjectToSiblings.map(function(a) {
-        return {"source": a.word1, "target": a.word2, "value": a.ratio};
-    });
+    // let first = subjectToSiblings.map(function(a) {
+    //     return {"source": a.word1, "target": a.word2, "value": a.ratio};
+    // });
     let second = siblingsToEachOther.map(function(a) {
         return {"source": a.word1, "target": a.word2, "value": a.ratio};
     });
 
-    links = [...first, ...second];
+    links = second;
 
     return {"nodes": nodes, "links": links};
 }
@@ -160,19 +160,27 @@ function newSiblingWords(pairArray, subject) {
         return a.word2;
     });
 
+    array = [subject, ...array];
+
     return {"subject": subject, "siblings": array};
 }
 
-function dataPooper(word) {
+function getItDone(word) {
     let siblingWords = getSiblingWords(word);
     let subjectToSiblings = relationToMain(siblingWords);
     subjectToSiblings = subjectToSiblings.slice(subjectToSiblings.length - 5);
-    
-    let biggestValue = subjectToSiblings[subjectToSiblings.length - 1];
-
     let newSiblings = newSiblingWords(subjectToSiblings, siblingWords.subject);
     let siblingsToEachOther = pairs(newSiblings);
     let data = graphData(subjectToSiblings, siblingsToEachOther);
+    let array = data.links.sort(function(a, b) {
+        return a.value - b.value;
+    });
+    let biggestValue = array[array.length - 1].value;
+    array = array.map(function(a) {
+        let newVal = Math.round(a.value / biggestValue * 10);
+        return {"source": a.source, "target": a.target, "value": newVal};
+    });
+    data = {"nodes": data.nodes, "links": array};
     return data;
 }
 
