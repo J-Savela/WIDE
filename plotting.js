@@ -1,4 +1,4 @@
-var data = [ { label: "Data Set 1",
+/*var data = [ { label: "Data Set 1",
     x: [0, 1, 2, 3, 4],
     y: [0, 1, 2, 3, 4] },
     { label: "Data Set 2",
@@ -14,12 +14,45 @@ var xy_chart = d3_xy_chart()
 var svg = d3.select("body").append("svg")
     .datum(data)
     .call(xy_chart) ;
+*/
+
+function makeLineChart(elemId, data) {
+    var xy_chart = d3_xy_chart()
+        .width(960)
+        .height(500)
+        .xlabel("Year")
+        .ylabel("Count")
+        .interpolation("linear");
+
+    d3.select("#" + elemId)
+        .datum(data)
+        .call(xy_chart) ;
+}
+
+var data = function () {
+    var dataX = mockData.points.map(p => p.year);
+    var dataY = mockData.points.map(p => p.count);
+    var data1 = {
+        "label": "punk",
+        "x": dataX,
+        "y": dataY
+    };
+    var dataX = mock1.points.map(p => p.year);
+    var dataY = mock1.points.map(p => p.count);
+    var data2 = {
+        "label": "punk2",
+        "x": dataX,
+        "y": dataY
+    };
+    return [data1, data2];
+}()
 
 function d3_xy_chart() {
     var width = 640,
         height = 480,
-        xlabel = "X Axis Label",
-        ylabel = "Y Axis Label" ;
+        xlabel = "Year",
+        ylabel = "Count"
+        interpolation = "basis" ;
 
     function chart(selection) {
         selection.each(function(datasets) {
@@ -37,8 +70,10 @@ function d3_xy_chart() {
 
             var y_scale = d3.scale.linear()
                 .range([innerheight, 0])
-                .domain([ d3.min(datasets, function(d) { return d3.min(d.y); }),
-                    d3.max(datasets, function(d) { return d3.max(d.y); }) ]) ;
+                .domain([ 0,
+                    d3.max(datasets, function(d) { return 1.1*d3.max(d.y); }) ]) ;
+          //    .domain([ d3.min(datasets, function(d) { return d3.min(d.y); }),
+          //        d3.max(datasets, function(d) { return d3.max(d.y); }) ]) ;
 
             var color_scale = d3.scale.category10()
                 .domain(d3.range(datasets.length)) ;
@@ -64,7 +99,7 @@ function d3_xy_chart() {
                 .tickFormat("") ;
 
             var draw_line = d3.svg.line()
-                .interpolate("basis")
+                .interpolate(interpolation)
                 .x(function(d) { return x_scale(d[0]); })
                 .y(function(d) { return y_scale(d[1]); }) ;
 
@@ -147,6 +182,12 @@ function d3_xy_chart() {
     chart.ylabel = function(value) {
         if(!arguments.length) return ylabel ;
         ylabel = value ;
+        return chart ;
+    } ;
+
+    chart.interpolation = function(value) {
+        if(!arguments.length) return interpolation ;
+        interpolation = value ;
         return chart ;
     } ;
 
