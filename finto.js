@@ -34,8 +34,23 @@ function goNarrower(uri) {
     return response;
 }
 
-function getSiblingWords(uriArray) {
-    for (let i in uriArray) {
-        goNarrower(uri);
+function getSiblingWords(word) {
+    try {
+    let array = [];
+    let wordUri = getUriForWord(word);
+    let broaderArray = goBroader(wordUri);
+    for (let i in broaderArray) {
+        let broaderUri = broaderArray[i].uri;
+        let siblings = goNarrower(broaderUri);
+        let mapped = siblings.narrower.map(function(word) { return word.prefLabel });
+        mapped = mapped.filter(sibling => word !== sibling);
+        array = [...array, ...mapped];
+    }
+
+    let jsonObj = {"subject": word, "siblings": array};
+    return jsonObj;
+    } catch (err) {
+        console.error(err);
+        return({"subject": word, "siblings":[]})
     }
 }
