@@ -62,20 +62,21 @@ function createV4SelectableForceDirectedGraph(svg, graph) {
         .selectAll("line")
         .data(graph.links)
         .enter().append("line")
-        .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
+        .attr("stroke-width", function(d) { return Math.sqrt(8*d.value); });
 
     var node = gDraw.append("g")
         .attr("class", "node")
         .selectAll("circle")
         .data(graph.nodes)
         .enter().append("circle")
-        .attr("r", 5)
-        .attr("fill", function(d) { 
-            if ('color' in d)
-                return d.color;
-            else
-                return color(d.group); 
-        })
+        .attr("r", 25)
+        .attr("fill", "#ffffff")
+        //.attr("fill", function(d) {
+        //    if ('color' in d)
+        //        return d.color;
+        //    else
+        //        return color(d.group);
+        //})
         .call(d3v4.drag()
         .on("start", dragstarted)
         .on("drag", dragged)
@@ -91,15 +92,27 @@ function createV4SelectableForceDirectedGraph(svg, graph) {
                 return d.id; 
         });
 
+    // add textperuna
+    var nodeTexts = gDraw.append("g")
+        .attr("class", "nodeTexts")
+        .selectAll("text")
+        .data(graph.nodes)
+        .enter().append("text")
+        .attr("text-anchor", "middle")
+        .attr("font-size", "12px")
+        .attr("font-family", "sans-serif")
+        .attr("fill", "black")
+        .text(function(d){return d.id})
+        .attr("x", function(d) { return d.x; })
+        .attr("y", function(d) { return d.y; });
+
+
+
     var simulation = d3v4.forceSimulation()
         .force("link", d3v4.forceLink()
                 .id(function(d) { return d.id; })
                 .distance(function(d) { 
-                    return 30;
-                    //var dist = 20 / d.value;
-                    //console.log('dist:', dist);
-
-                    return dist; 
+                    return 200;
                 })
               )
         .force("charge", d3v4.forceManyBody())
@@ -124,6 +137,9 @@ function createV4SelectableForceDirectedGraph(svg, graph) {
 
         node.attr("cx", function(d) { return d.x; })
             .attr("cy", function(d) { return d.y; });
+
+        nodeTexts.attr("x", function(d) { return d.x; })
+            .attr("y", function(d) { return d.y; });
     }
 
     var brushMode = false;
@@ -256,7 +272,7 @@ function createV4SelectableForceDirectedGraph(svg, graph) {
             d.fy = null;
         })
     }
-
+/*
     var texts = ['Use the scroll wheel to zoom',
                  'Hold the shift key to select nodes']
 
@@ -267,6 +283,6 @@ function createV4SelectableForceDirectedGraph(svg, graph) {
         .attr('x', 900)
         .attr('y', function(d,i) { return 470 + i * 18; })
         .text(function(d) { return d; });
-
+*/
     return graph;
 };
