@@ -39,7 +39,7 @@ function drawLineChart() {
     var keywords = keywordArray;
 
     // Query data from Finna
-    var dataDets = getData(keywords, from, to);
+    var dataDets = getData(keywords, startYear, endYear);
 
     // Reformat data for plotting
     var reformatted = reformatDataForLineChart(dataDets);

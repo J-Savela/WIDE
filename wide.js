@@ -4,7 +4,7 @@ var keywordArray = Array();
 function add_element_to_array()
 {
  keywordArray[x] = document.getElementById("text1").value;
- alert("Your search about " + "[ "  + keywordArray[x] + "] "+  " already be added in");
+ alert("The keyword "  + keywordArray[x] + " has been added");
  x++;
  document.getElementById("text1").value = "";
 }
