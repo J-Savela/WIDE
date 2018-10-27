@@ -28,4 +28,14 @@ function goBroader(uri) {
 
 //todo make a function to get sibling concepts for word
 
-console.log(goBroader(getUriForWord("peruna")));
+function goNarrower(uri) {
+    let url = "http://api.finto.fi/rest/v1/yso/narrower?uri=" + uri;
+    let response = getFromWeb(url);
+    return response;
+}
+
+function getSiblingWords(uriArray) {
+    for (let i in uriArray) {
+        goNarrower(uri);
+    }
+}
