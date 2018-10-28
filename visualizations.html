@@ -41,16 +41,8 @@
             list.appendChild(li);
         });
         
-        var svg = d3.select('#d3_selectable_force_directed_graph');
-    
-        d3.json('miserables.with-ids.json', function (error, graph) {
-            if (!error) {
-                //console.log('graph', graph);
-                createV4SelectableForceDirectedGraph(svg, data);
-            } else {
-                console.error(error);
-            }
-        });
+        var svg = d3.select('#d3_selectable_force_directed_graph'); 
+        createV4SelectableForceDirectedGraph(svg, data);
         var date2 = new Date();
 
         var diff = date2.getTime() - date.getTime();
